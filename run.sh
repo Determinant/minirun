@@ -1,6 +1,6 @@
 #!/bin/bash
 
-basedir="$(dirname "${BASH_SOURCE[0]}")"
+basedir="$(dirname $(realpath "${BASH_SOURCE[0]}"))"
 node_group="${node_group:-nodes}"
 node_setup_group="${node_setup_group:-nodes_setup}"
 node_file="${node_file:-$basedir/nodes.ini}"
