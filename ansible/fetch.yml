@@ -5,7 +5,7 @@
 - hosts: localhost
   tasks:
     - file:
-        path: "{{ (work_dir, 'remote') | path_join }}"
+        path: "{{ (workdir, 'remote') | path_join }}"
         state: directory
 
 - name: fetch files from the remote
@@ -13,7 +13,7 @@
   tasks:
     - import_tasks: helper/fetch.yml
   vars:
-    work_dir: "{{ hostvars['localhost']['work_dir'] }}"
+    workdir: "{{ hostvars['localhost']['workdir'] }}"
     last_state: "{{ hostvars['localhost']['last_state'] }}"
     nid: "{{ host_idx | default(0) }}"
     ngroup: "{{ node_group | default('nodes') }}"

@@ -1,4 +1,7 @@
 ---
+# available vars:
+# workdir -- the local directory of run_id
+
 - name: setup json-server binaries
   block:
     - block:
@@ -27,11 +30,11 @@
       become_user: root
     - synchronize:
         archive: true
-        src: "{{ (work_dir, 'db.json') | path_join }}"
+        src: "{{ (workdir, 'db.json') | path_join }}"
         dest: ~/
         mode: push
     - synchronize:
         archive: true
-        src: "{{ (work_dir, 'db2.json') | path_join }}"
+        src: "{{ (workdir, 'db2.json') | path_join }}"
         dest: ~/
         mode: push

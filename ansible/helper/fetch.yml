@@ -7,4 +7,4 @@
         dest: "{{ local_dir }}"
         mode: pull
   vars:
-    local_dir: "{{ (work_dir, 'remote', nid) | path_join }}"
+    local_dir: "{{ (workdir, 'remote', nid) | path_join }}"

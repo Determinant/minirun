@@ -1,17 +1,17 @@
 #!/bin/bash
 
+basedir="$(dirname "${BASH_SOURCE[0]}")"
 node_group="${node_group:-nodes}"
 node_setup_group="${node_setup_group:-nodes_setup}"
-node_file="${node_file:-nodes.ini}"
-group_vars="${group_vars:-./group_vars}"
-basedir="$(dirname "${BASH_SOURCE[0]}")"
+node_file="${node_file:-$basedir/nodes.ini}"
+group_vars="${group_vars:-$basedir/group_vars}"
 app_module="${app_module:-$basedir/app/}"
 ansible="$basedir/ansible"
 
-build_tasks="${build_tasks:-../app/build.yml}"
-reset_tasks="${reset_tasks:-../app/reset.yml}"
-run_tasks="${run_tasks:-../app/run.yml}"
-setup_tasks="${setup_tasks:-../app/_setup.yml}"
+build_tasks="${build_tasks:-$app_module/build.yml}"
+reset_tasks="${reset_tasks:-$app_module/reset.yml}"
+run_tasks="${run_tasks:-$app_module/run.yml}"
+setup_tasks="${setup_tasks:-$app_module/_setup.yml}"
 
 function die { echo "error: $1"; exit 1; }
 function print_help {

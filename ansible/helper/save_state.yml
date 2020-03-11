@@ -4,4 +4,4 @@
   tasks:
     - copy:
         content="{{ cur_state }}"
-        dest="{{ (work_dir, 'state.json') | path_join }}"
+        dest="{{ (workdir, 'state.json') | path_join }}"
