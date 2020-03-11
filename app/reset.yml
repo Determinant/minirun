@@ -1,0 +1,6 @@
+---
+- name: reset json-server state
+  block:
+    - debug:
+        msg: reset
+        # add tasks here to reset some files

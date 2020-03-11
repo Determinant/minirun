@@ -1,0 +1,6 @@
+---
+- name: build json-server
+  shell:
+    cmd: npm install -g json-server
+  become: true
+  become_user: root
