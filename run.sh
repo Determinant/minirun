@@ -12,6 +12,7 @@ build_tasks="${build_tasks:-$app_module/build.yml}"
 reset_tasks="${reset_tasks:-$app_module/reset.yml}"
 run_tasks="${run_tasks:-$app_module/run.yml}"
 setup_tasks="${setup_tasks:-$app_module/_setup.yml}"
+export ANSIBLE_CONFIG="$basedir/ansible.cfg"
 
 function die { echo "error: $1"; exit 1; }
 function print_help {
