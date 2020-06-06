@@ -6,3 +6,4 @@
     - import_tasks: "{{ setup_tasks | default('../app/_setup.yml') }}"
       vars:
         workdir: "{{ lookup('env', 'PWD') }}"
+    - import_tasks: "{{ build_tasks | default('../app/build.yml') }}"

@@ -90,7 +90,7 @@ def run_module():
         module.params[arg] = os.path.expanduser(module.params[arg])
 
     try:
-        cmd = ['nohup', module.params['bin']]
+        cmd = [*(module.params['bin'].split())]
         for arg in json_server_args:
             val = module.params[arg]
             if not (val is None):
@@ -104,13 +104,20 @@ def run_module():
                 os.path.join(logdir, 'stdout')), "w")
             stderr = open(os.path.expanduser(
                 os.path.join(logdir, 'stderr')), "w")
+            nullsrc = open("/dev/null", "r")
         else:
             (stdout, stderr) = None, None
+
         cwd = module.params['cwd']
+
         pid = subprocess.Popen(
-            cmd,
-            cwd=cwd,
-            stdout=stdout, stderr=stderr, env=os.environ).pid
+                cmd,
+                cwd=cwd,
+                stdin=nullsrc,
+                stdout=stdout, stderr=stderr,
+                env=os.environ,
+                shell=False,
+                start_new_session=True).pid
         module.exit_json(
                 changed=False,
                 status=0, pid=pid, cmd=" ".join(cmd), cwd=cwd)

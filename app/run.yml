@@ -14,7 +14,7 @@
         state: directory
     - name: start node
       json_server:
-        bin: "{{ json_server_bin | default('/usr/local/json-server') }}"
+        bin: "{{ json_server_bin | default('/usr/bin/json-server') }}"
         cwd: "{{ json_server_cwd | default('~/') }}"
         port: "{{ json_server_port | default((base_http_port | default(20000)) + (nid | int)) }}"
         config: "{{ json_server_config | default('') }}"

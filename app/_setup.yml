@@ -23,7 +23,6 @@
               - g++
               - make
               - nodejs
-              - npm
             state:
               latest
       become: true

@@ -4,15 +4,15 @@ How to Use MiniRun Template
 The files that need to be configured according to your setup:
 
 - ``group_vars/all.yml`` -- configuration applied to all nodes
-- ``group_vars/nodes_non_bootstrap.yml`` -- configuration only applied to those regular (non-bootstrap) nodes
+- ``group_vars/nodes_special.yml`` -- configuration only applied to special nodes
 
 NOTE: see ``app/run.yml`` for all available options passed to the app
 
 - ``nodes.ini``
 
   - ``nodes_setup`` section: list the distinct machines that are used to host nodes
-  - ``nodes_non_bootstrap`` section: list the regular nodes
-  - ``nodes`` section: list the bootstrap nodes (regular nodes are already included)
+  - ``nodes`` section: list the regular nodes
+  - ``nodes_special`` section: list the special nodes (you can customize your own)
 - ``nodes.yml`` is the yaml version of ``nodes.ini``, *not* used by default
 
   NOTE: the same machine could host multiple nodes at the same time, to allow

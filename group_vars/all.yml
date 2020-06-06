@@ -4,9 +4,9 @@
 ansible_connection: ssh
 ansible_user: ubuntu
 # change to your aws ec2 key file here
-ansible_ssh_private_key_file: ~/.ssh/ted-key.pem
+ansible_ssh_private_key_file: ~/.ssh/ted-aws-key2.pem
 # process name that is used by killall in reset
-bin_name: json-server
+bin_name: node
 # remote directory that keeps the work directory for the running app
 testbed_prefix: ~/testbed
 build_tasks: ../app/build.yml

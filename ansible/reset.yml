@@ -6,7 +6,6 @@
   hosts: "{{ ngroup }}"
   tasks:
     - import_tasks: helper/kill.yml
-    - import_tasks: "{{ build_tasks | default('../app/build.yml') }}"
     - import_tasks: "{{ reset_tasks | default('../app/reset.yml') }}"
   vars:
     last_state: "{{ hostvars['localhost']['last_state'] }}"
