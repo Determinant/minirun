@@ -77,6 +77,7 @@ function _setup {
     ansible-playbook -i "$node_file" \
         --extra-vars \
             "node_setup_group=$node_setup_group\
+            build_tasks=$build_tasks \
             setup_tasks=$setup_tasks" \
         "$ansible/_setup.yml" "$@"
 }
