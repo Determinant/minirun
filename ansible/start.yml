@@ -9,7 +9,7 @@
         state: directory
     - name: check the state status
       fail: msg="nodes are already started"
-      when: last_state['status']  == "started"
+      when: last_state['status']  == "started" and not(forced|default(false)|bool)
 
 - name: start the nodes
   hosts: "{{ ngroup }}"

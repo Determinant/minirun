@@ -12,16 +12,18 @@ build_tasks="${build_tasks:-$app_module/build.yml}"
 reset_tasks="${reset_tasks:-$app_module/reset.yml}"
 run_tasks="${run_tasks:-$app_module/run.yml}"
 setup_tasks="${setup_tasks:-$app_module/_setup.yml}"
+forced=false
 export ANSIBLE_CONFIG="$basedir/ansible.cfg"
 
 function die { echo "error: $1"; exit 1; }
 function print_help {
-echo "Usage: $0 [--group] [--group_vars] [--nodes] [--help] COMMAND RUNID
+echo "Usage: $0 [--group] [--group_vars] [--nodes] [--help] [--force] COMMAND RUNID
 
     --help                      show this help and exit
     --group                     specify the ansible group name
     --group_vars                specify the group_vars dir
     --nodes                     specify the ansible inventory (.ini or .yml/.yaml)
+    --force                     force the operation
 
 COMMAND
     setup                       setup the environment before launch (once is enough)
@@ -68,7 +70,8 @@ function ansible {
             node_group=$node_group \
             build_tasks=$build_tasks \
             reset_tasks=$reset_tasks \
-            run_tasks=$run_tasks" \
+            run_tasks=$run_tasks \
+            forced=$forced" \
         -M "$app_module" \
         "$ansible/$action.yml"
 }
@@ -139,6 +142,7 @@ LONG='\
 group:,\
 group-vars:,\
 nodes:,\
+force,\
 help'
 
 PARSED=$(getopt --options "$SHORT" --longoptions "$LONG" --name "$0" -- "$@")
@@ -151,6 +155,7 @@ while true; do
         --group-vars) group_vars="$2"; shift 2;;
         --help) print_help; shift 1;;
         --nodes) node_file="$2"; shift 2;;
+        --force) forced=true; shift 1;;
         --) shift; break;;
         *) die "internal error";;
     esac
