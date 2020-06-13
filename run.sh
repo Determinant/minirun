@@ -49,7 +49,7 @@ function _check_id {
 
 function check_id {
     id=${1%/}
-    (_check_id "$id" && [[ -f "$id/nodes" ]]) || die "invalid runid"
+    (_check_id "$id" && [[ -f "$id/nodes" ]]) || die "invalid runid: \"$id\""
     workdir="$id"
 }
 
