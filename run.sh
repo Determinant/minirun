@@ -44,7 +44,7 @@ function check_argnum {
 
 function _check_id {
     id=${1%/}
-    [[ "$id" =~ ^[0-9a-zA-Z_-|]+$ ]]
+    [[ "$id" =~ ^[0-9a-zA-Z_|-]+$ ]]
 }
 
 function check_id {
